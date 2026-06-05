@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blockchain Consensus Explainer</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #F5F7FB;
+      --color-surface: #FFFFFF;
+      --color-text: #273244;
+      --color-heading: #0B1220;
+      --color-muted: #69758A;
+      --color-border: #D8E0EC;
+      --color-subtle: #EAF0F8;
+      --color-accent: #2563EB;
+      --color-success: #0F8A5F;
+      --color-danger: #B42318;
+      --color-warn: #B7791F;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #08111F;
+      --color-surface: #101A2B;
+      --color-text: #D7E1F0;
+      --color-heading: #F7FAFF;
+      --color-muted: #8D9AB0;
+      --color-border: #26344A;
+      --color-subtle: #16243A;
+      --color-accent: #60A5FA;
+      --color-success: #5FD3A1;
+      --color-danger: #F87171;
+      --color-warn: #F2BD62;
+    }
+  </style>
+</head>
+<body class="bg-bg text-text font-sans antialiased selection:bg-accent/20 selection:text-heading">
+  <main class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
+    <header class="mb-8 sm:mb-10">
+      <div class="mb-4 inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-mono uppercase tracking-[0.22em] text-muted">
+        Distributed Systems Primer
+      </div>
+      <h1 class="max-w-4xl font-serif text-4xl leading-tight text-heading sm:text-5xl lg:text-6xl">How Blockchain Consensus Works</h1>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-muted sm:text-lg">Consensus is the rulebook and coordination process that lets many independent computers agree on one shared transaction history without needing a central operator.</p>
+    </header>
+
+    <section aria-labelledby="tldr" class="mb-8 rounded-2xl border border-border border-l-4 border-l-accent bg-surface p-5 shadow-sm sm:p-6">
+      <h2 id="tldr" class="mb-2 font-mono text-sm font-semibold uppercase tracking-[0.2em] text-accent">TL;DR</h2>
+      <p class="text-lg leading-8 text-heading"><strong>Blockchain consensus chooses the next valid block, makes cheating expensive or punishable, and gives the network a way to converge on the same ledger.</strong> Nodes verify transactions, block producers propose updates, validators or miners vote with scarce resources, and finality rules decide when a block is safe to treat as permanent.</p>
+    </section>
+
+    <div class="grid gap-8 lg:grid-cols-[260px_1fr] lg:items-start">
+      <aside class="hidden rounded-2xl border border-border bg-surface p-5 lg:sticky lg:top-8 lg:block">
+        <p class="mb-3 font-mono text-xs uppercase tracking-[0.2em] text-muted">Sections</p>
+        <nav class="space-y-2 text-sm">
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#section-01">01 Consensus goal</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#section-02">02 Block lifecycle</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#section-03">03 Proof mechanisms</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#section-04">04 Finality and forks</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#section-05">05 Tradeoffs</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle hover:text-heading" href="#faq">FAQ</a>
+        </nav>
+      </aside>
+
+      <div class="space-y-6">
+        <section id="section-01" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">01</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">What consensus is trying to solve</h2>
+              <p class="mt-2 leading-7 text-muted">A blockchain is useful only if the network agrees which transactions happened and in what order. Consensus prevents double-spending and keeps thousands of nodes synchronized even when some participants are offline, slow, greedy, or malicious.</p>
+            </div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-xl border border-border bg-subtle p-4">
+              <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Safety</p>
+              <p class="mt-2 text-sm leading-6">Honest nodes should not finalize conflicting histories.</p>
+            </div>
+            <div class="rounded-xl border border-border bg-subtle p-4">
+              <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Liveness</p>
+              <p class="mt-2 text-sm leading-6">Valid transactions should keep making progress into blocks.</p>
+            </div>
+            <div class="rounded-xl border border-border bg-subtle p-4">
+              <p class="text-xs font-mono font-semibold uppercase tracking-wider text-muted">Sybil Resistance</p>
+              <p class="mt-2 text-sm leading-6">Influence must be tied to something scarce, not fake identities.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="section-02" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-5 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">02</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">The block lifecycle</h2>
+              <p class="mt-2 leading-7 text-muted">Consensus is not one vote. It is a repeated pipeline where proposed blocks are checked, propagated, selected, and eventually considered final.</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-2xl border border-border bg-subtle p-4">
+            <svg class="min-w-[760px]" viewBox="0 0 920 360" role="img" aria-labelledby="diagram-title diagram-desc" xmlns="http://www.w3.org/2000/svg">
+              <title id="diagram-title">Blockchain consensus network diagram</title>
+              <desc id="diagram-desc">Transactions enter a peer-to-peer network, nodes validate them, a producer proposes a block, validators attest, and finalized blocks extend the chain.</desc>
+              <defs>
+                <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                  <path d="M 0 0 L 10 5 L 0 10 z" class="fill-accent"></path>
+                </marker>
+              </defs>
+              <rect x="30" y="120" width="135" height="80" rx="18" class="fill-surface stroke-border" stroke-width="2"></rect>
+              <text x="98" y="150" text-anchor="middle" class="fill-heading font-mono text-[15px] font-bold">Transactions</text>
+              <text x="98" y="176" text-anchor="middle" class="fill-muted text-[13px]">signed requests</text>
+
+              <circle cx="305" cy="100" r="42" class="fill-surface stroke-accent" stroke-width="3"></circle>
+              <circle cx="245" cy="180" r="42" class="fill-surface stroke-accent" stroke-width="3"></circle>
+              <circle cx="365" cy="180" r="42" class="fill-surface stroke-accent" stroke-width="3"></circle>
+              <line x1="283" y1="135" x2="267" y2="146" class="stroke-border" stroke-width="2"></line>
+              <line x1="327" y1="135" x2="343" y2="146" class="stroke-border" stroke-width="2"></line>
+              <line x1="287" y1="180" x2="323" y2="180" class="stroke-border" stroke-width="2"></line>
+              <text x="305" y="105" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Node</text>
+              <text x="245" y="185" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Node</text>
+              <text x="365" y="185" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Node</text>
+              <text x="305" y="246" text-anchor="middle" class="fill-muted text-[14px]">verify signatures, balances, rules</text>
+
+              <rect x="505" y="105" width="150" height="110" rx="20" class="fill-surface stroke-warn" stroke-width="3"></rect>
+              <text x="580" y="143" text-anchor="middle" class="fill-heading font-mono text-[15px] font-bold">Block</text>
+              <text x="580" y="169" text-anchor="middle" class="fill-heading font-mono text-[15px] font-bold">Producer</text>
+              <text x="580" y="195" text-anchor="middle" class="fill-muted text-[13px]">proposes next block</text>
+
+              <rect x="735" y="70" width="125" height="58" rx="16" class="fill-surface stroke-success" stroke-width="2"></rect>
+              <rect x="735" y="151" width="125" height="58" rx="16" class="fill-surface stroke-success" stroke-width="2"></rect>
+              <rect x="735" y="232" width="125" height="58" rx="16" class="fill-surface stroke-success" stroke-width="2"></rect>
+              <text x="798" y="104" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Block N</text>
+              <text x="798" y="185" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Block N+1</text>
+              <text x="798" y="266" text-anchor="middle" class="fill-heading font-mono text-[14px] font-bold">Block N+2</text>
+              <line x1="860" y1="99" x2="885" y2="180" class="stroke-border" stroke-width="2"></line>
+              <line x1="860" y1="180" x2="885" y2="261" class="stroke-border" stroke-width="2"></line>
+
+              <line x1="165" y1="160" x2="202" y2="160" class="stroke-accent" stroke-width="3" marker-end="url(#arrow)"></line>
+              <line x1="407" y1="160" x2="490" y2="160" class="stroke-accent" stroke-width="3" marker-end="url(#arrow)"></line>
+              <line x1="655" y1="160" x2="720" y2="180" class="stroke-accent" stroke-width="3" marker-end="url(#arrow)"></line>
+              <path d="M 735 151 C 690 125 690 95 735 86" class="fill-none stroke-success" stroke-width="3" marker-end="url(#arrow)"></path>
+              <text x="695" y="128" text-anchor="middle" class="fill-success font-mono text-[12px] font-bold">attest</text>
+            </svg>
+          </div>
+          <details class="mt-4 overflow-hidden rounded-xl border border-border bg-surface">
+            <summary class="flex cursor-pointer items-center gap-3 px-5 py-4 font-serif text-lg text-heading">Open the lifecycle steps <span class="ml-auto font-mono text-xs text-muted">details</span></summary>
+            <ol class="space-y-3 px-5 pb-5 text-sm leading-6 text-text sm:text-base">
+              <li><strong>1. Transactions broadcast:</strong> users sign transactions and send them to peers.</li>
+              <li><strong>2. Nodes validate:</strong> each node rejects invalid signatures, overspending, or rule-breaking data.</li>
+              <li><strong>3. A producer proposes:</strong> a miner or validator packages valid transactions into a candidate block.</li>
+              <li><strong>4. The network checks:</strong> peers verify the block and signal support according to the consensus rules.</li>
+              <li><strong>5. The chain advances:</strong> the accepted block becomes part of the ledger, with stronger confidence as more confirmations or finality votes accumulate.</li>
+            </ol>
+          </details>
+        </section>
+
+        <section id="section-03" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-5 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">03</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">How networks decide who gets influence</h2>
+              <p class="mt-2 leading-7 text-muted">Consensus systems need a scarce signal so one attacker cannot create millions of fake nodes and outvote everyone.</p>
+            </div>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle" open>
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Proof of Work <span class="ml-2 rounded-lg bg-warn/20 px-2 py-0.5 font-mono text-xs text-warn">energy cost</span></summary>
+              <div class="px-5 pb-5 leading-7">
+                <p>Miners repeatedly compute hashes until one finds a value below the network target. The winning proof is easy for everyone else to verify but expensive to produce.</p>
+                <p class="mt-3 text-muted">Security comes from making chain rewrite attacks require enormous hardware and electricity.</p>
+              </div>
+            </details>
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle" open>
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Proof of Stake <span class="ml-2 rounded-lg bg-success/15 px-2 py-0.5 font-mono text-xs text-success">capital at risk</span></summary>
+              <div class="px-5 pb-5 leading-7">
+                <p>Validators lock tokens as stake and are selected to propose or attest to blocks. Honest behavior earns rewards; provable cheating can be penalized or slashed.</p>
+                <p class="mt-3 text-muted">Security comes from making attacks financially self-destructive.</p>
+              </div>
+            </details>
+          </div>
+        </section>
+
+        <section id="section-04" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-5 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">04</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">Forks, confirmations, and finality</h2>
+              <p class="mt-2 leading-7 text-muted">Sometimes two valid-looking blocks appear at nearly the same time. Consensus rules tell nodes how to converge on one history.</p>
+            </div>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-3">
+            <div class="rounded-xl border border-border p-4">
+              <span class="rounded-lg bg-warn/20 px-2 py-0.5 font-mono text-xs font-semibold text-warn">TEMPORARY</span>
+              <h3 class="mt-3 font-serif text-xl text-heading">Fork</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">A short-lived split where nodes see competing candidate histories.</p>
+            </div>
+            <div class="rounded-xl border border-border p-4">
+              <span class="rounded-lg bg-accent/15 px-2 py-0.5 font-mono text-xs font-semibold text-accent">PROBABILITY</span>
+              <h3 class="mt-3 font-serif text-xl text-heading">Confirmation</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">More blocks built on top make reversal increasingly unlikely.</p>
+            </div>
+            <div class="rounded-xl border border-border p-4">
+              <span class="rounded-lg bg-success/15 px-2 py-0.5 font-mono text-xs font-semibold text-success">COMMITMENT</span>
+              <h3 class="mt-3 font-serif text-xl text-heading">Finality</h3>
+              <p class="mt-2 text-sm leading-6 text-muted">A rule-defined point where reverting a block is impossible or economically catastrophic.</p>
+            </div>
+          </div>
+          <details class="mt-4 overflow-hidden rounded-xl border border-border bg-subtle">
+            <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Why finality differs by chain</summary>
+            <div class="px-5 pb-5 leading-7 text-text">
+              <p>Bitcoin-style proof-of-work finality is probabilistic: confidence rises with confirmations. Many proof-of-stake systems add explicit validator votes, so finality can be reached after enough stake signs the same checkpoint.</p>
+            </div>
+          </details>
+        </section>
+
+        <section id="section-05" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-5 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">05</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">The core tradeoffs</h2>
+              <p class="mt-2 leading-7 text-muted">Consensus designs optimize for different priorities. No mechanism gives maximum decentralization, speed, cost efficiency, and simplicity all at once.</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-border">
+            <table class="min-w-[680px] w-full border-collapse text-left text-sm">
+              <thead class="bg-subtle text-xs uppercase tracking-wider text-muted">
+                <tr>
+                  <th class="border-b border-border px-4 py-3">Tradeoff</th>
+                  <th class="border-b border-border px-4 py-3">What improves</th>
+                  <th class="border-b border-border px-4 py-3">What may worsen</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-border">
+                <tr>
+                  <td class="px-4 py-4 font-semibold text-heading">Bigger blocks</td>
+                  <td class="px-4 py-4">More throughput</td>
+                  <td class="px-4 py-4">Harder for ordinary users to run nodes</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-4 font-semibold text-heading">Faster block times</td>
+                  <td class="px-4 py-4">Lower latency</td>
+                  <td class="px-4 py-4">More forks and network coordination pressure</td>
+                </tr>
+                <tr>
+                  <td class="px-4 py-4 font-semibold text-heading">Higher validator requirements</td>
+                  <td class="px-4 py-4">Better performance and reliability</td>
+                  <td class="px-4 py-4">Less permissionless participation</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <section id="faq" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-6">
+          <div class="mb-5 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">FAQ</span>
+            <div>
+              <h2 class="font-serif text-2xl text-heading sm:text-3xl">Common Questions</h2>
+              <p class="mt-2 leading-7 text-muted">Short answers to the questions that usually create confusion.</p>
+            </div>
+          </div>
+          <div class="space-y-3">
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle">
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Does consensus make transactions instantly final?</summary>
+              <p class="px-5 pb-5 leading-7">Not always. Some chains use probabilistic confidence after multiple confirmations; others use explicit finality votes that commit blocks after a threshold is reached.</p>
+            </details>
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle">
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Can a bad actor control consensus?</summary>
+              <p class="px-5 pb-5 leading-7">Only if they control enough scarce resource, such as hash power or stake, to overpower the honest network. Good designs make that attack extremely expensive, visible, and difficult to sustain.</p>
+            </details>
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle">
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Are validators and nodes the same thing?</summary>
+              <p class="px-5 pb-5 leading-7">Not necessarily. A node can verify and relay data, while a validator has a formal role in proposing or voting on blocks under a specific consensus protocol.</p>
+            </details>
+            <details class="overflow-hidden rounded-xl border border-border bg-subtle">
+              <summary class="cursor-pointer px-5 py-4 font-serif text-lg text-heading">Why not just use one database?</summary>
+              <p class="px-5 pb-5 leading-7">A normal database is simpler and faster when one operator is trusted. Blockchain consensus is useful when many parties need shared state without giving one party unilateral control.</p>
+            </details>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 flex h-11 w-11 cursor-pointer items-center justify-center rounded-full border border-border bg-surface text-sm text-heading shadow-lg transition-transform hover:scale-110" aria-label="Toggle theme"></button>
+  <script>
+    (function () {
+      var themes = ['system', 'light', 'dark'];
+      var icons = { system: '◐', light: '☀', dark: '☾' };
+      var current = 'system';
+      var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+      function apply(t) {
+        document.documentElement.setAttribute('data-theme', t === 'system' && media.matches ? 'dark' : t === 'system' ? 'light' : t);
+        document.getElementById('theme-toggle').textContent = icons[t];
+        document.getElementById('theme-toggle').setAttribute('title', 'Theme: ' + t);
+      }
+
+      apply(current);
+
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        var idx = themes.indexOf(current);
+        current = themes[(idx + 1) % themes.length];
+        apply(current);
+      });
+
+      media.addEventListener('change', function () {
+        if (current === 'system') apply('system');
+      });
+    })();
+  </script>
+</body>
+</html>

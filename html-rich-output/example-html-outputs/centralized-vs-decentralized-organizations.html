@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Centralized vs Decentralized Organizations</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #F6F8FB;
+      --color-surface: #FFFFFF;
+      --color-text: #334155;
+      --color-heading: #0F172A;
+      --color-muted: #64748B;
+      --color-border: #CBD5E1;
+      --color-subtle: #EAF0F7;
+      --color-accent: #2563EB;
+      --color-success: #15803D;
+      --color-danger: #B91C1C;
+      --color-warn: #B45309;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #0B1220;
+      --color-surface: #111827;
+      --color-text: #CBD5E1;
+      --color-heading: #F8FAFC;
+      --color-muted: #94A3B8;
+      --color-border: #334155;
+      --color-subtle: #1E293B;
+      --color-accent: #60A5FA;
+      --color-success: #4ADE80;
+      --color-danger: #F87171;
+      --color-warn: #FBBF24;
+    }
+  </style>
+</head>
+<body class="bg-bg text-text font-sans antialiased">
+  <main class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+    <header class="mb-8 grid gap-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-end">
+      <div>
+        <p class="mb-3 text-xs font-mono uppercase tracking-[0.25em] text-accent">Organization Design Brief</p>
+        <h1 class="font-serif text-4xl font-bold leading-tight text-heading sm:text-5xl lg:text-6xl">Centralized vs Decentralized Structures</h1>
+        <p class="mt-4 max-w-3xl text-lg text-muted">A side-by-side guide to authority, speed, consistency, accountability, and fit across common operating models.</p>
+      </div>
+      <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+        <div class="grid grid-cols-2 gap-3 text-sm">
+          <div class="rounded-xl bg-subtle p-4">
+            <div class="font-mono text-xs uppercase tracking-wider text-muted">Best For</div>
+            <div class="mt-1 font-semibold text-heading">Decision Clarity</div>
+          </div>
+          <div class="rounded-xl bg-subtle p-4">
+            <div class="font-mono text-xs uppercase tracking-wider text-muted">Tradeoff</div>
+            <div class="mt-1 font-semibold text-heading">Speed vs Control</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="mb-10 rounded-2xl border border-border border-l-4 border-l-accent bg-surface p-5 shadow-sm sm:p-6">
+      <h2 class="mb-2 font-serif text-2xl font-bold text-heading">TL;DR</h2>
+      <p class="text-base leading-7 text-text"><strong>Centralized organizations</strong> concentrate decision-making at the top, which improves consistency, cost control, and strategic alignment. <strong>Decentralized organizations</strong> push authority closer to teams, customers, or regions, which improves responsiveness, ownership, and local adaptation. Most mature companies use a hybrid: centralize irreversible or enterprise-wide decisions, decentralize customer-facing and fast-cycle decisions.</p>
+    </section>
+
+    <nav class="mb-10 overflow-x-auto rounded-2xl border border-border bg-surface p-3 shadow-sm">
+      <div class="flex min-w-max gap-2 text-sm font-mono">
+        <a href="#section-01" class="rounded-xl bg-subtle px-4 py-2 text-muted hover:text-heading">01 Snapshot</a>
+        <a href="#section-02" class="rounded-xl bg-subtle px-4 py-2 text-muted hover:text-heading">02 Side by Side</a>
+        <a href="#section-03" class="rounded-xl bg-subtle px-4 py-2 text-muted hover:text-heading">03 Diagrams</a>
+        <a href="#section-04" class="rounded-xl bg-subtle px-4 py-2 text-muted hover:text-heading">04 Pros / Cons</a>
+        <a href="#section-05" class="rounded-xl bg-subtle px-4 py-2 text-muted hover:text-heading">05 Matrix</a>
+      </div>
+    </nav>
+
+    <section id="section-01" class="mb-12">
+      <div class="mb-5 flex items-baseline gap-3">
+        <span class="font-mono text-sm font-bold text-accent">01</span>
+        <h2 class="font-serif text-3xl font-bold text-heading">Executive Snapshot</h2>
+      </div>
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Centralized Strength</div>
+          <div class="mt-2 text-xl font-bold text-heading">Uniform execution</div>
+          <p class="mt-2 text-sm text-muted">Policy, pricing, brand, budget, and risk decisions stay coherent.</p>
+        </div>
+        <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Centralized Risk</div>
+          <div class="mt-2 text-xl font-bold text-danger">Bottlenecks</div>
+          <p class="mt-2 text-sm text-muted">Senior leaders become approval queues and local context arrives late.</p>
+        </div>
+        <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Decentralized Strength</div>
+          <div class="mt-2 text-xl font-bold text-heading">Local speed</div>
+          <p class="mt-2 text-sm text-muted">Teams make customer, market, and operational calls closer to reality.</p>
+        </div>
+        <div class="rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Decentralized Risk</div>
+          <div class="mt-2 text-xl font-bold text-warn">Fragmentation</div>
+          <p class="mt-2 text-sm text-muted">Different teams may duplicate work or drift from enterprise standards.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-02" class="mb-12">
+      <div class="mb-5 flex items-baseline gap-3">
+        <span class="font-mono text-sm font-bold text-accent">02</span>
+        <h2 class="font-serif text-3xl font-bold text-heading">Side-by-Side Comparison</h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        <article class="rounded-2xl border border-border bg-surface p-6 shadow-sm">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <h3 class="font-serif text-2xl font-bold text-heading">Centralized</h3>
+            <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-mono font-bold text-accent">CONTROL-FIRST</span>
+          </div>
+          <p class="mb-5 text-muted">Authority is concentrated in senior leadership or a corporate center. Lower levels execute within defined rules and escalation paths.</p>
+          <dl class="grid gap-3 text-sm">
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Decision locus</dt><dd class="mt-1 text-muted">Executive team, headquarters, or central functions.</dd></div>
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Coordination style</dt><dd class="mt-1 text-muted">Policies, standards, approvals, centralized planning cycles.</dd></div>
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Best fit</dt><dd class="mt-1 text-muted">Regulated industries, crisis response, early-stage strategy resets, shared-service scale.</dd></div>
+          </dl>
+        </article>
+        <article class="rounded-2xl border border-border bg-surface p-6 shadow-sm">
+          <div class="mb-4 flex items-center justify-between gap-3">
+            <h3 class="font-serif text-2xl font-bold text-heading">Decentralized</h3>
+            <span class="rounded-full bg-success/15 px-3 py-1 text-xs font-mono font-bold text-success">SPEED-FIRST</span>
+          </div>
+          <p class="mb-5 text-muted">Authority is distributed to business units, regions, products, or frontline teams. Leaders set guardrails while teams adapt locally.</p>
+          <dl class="grid gap-3 text-sm">
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Decision locus</dt><dd class="mt-1 text-muted">Business units, regional leaders, product teams, frontline managers.</dd></div>
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Coordination style</dt><dd class="mt-1 text-muted">Principles, metrics, boundaries, cross-team forums, shared platforms.</dd></div>
+            <div class="rounded-xl bg-subtle p-4"><dt class="font-bold text-heading">Best fit</dt><dd class="mt-1 text-muted">Diverse markets, fast-changing customer needs, innovation portfolios, distributed operations.</dd></div>
+          </dl>
+        </article>
+      </div>
+      <div class="mt-5 overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+        <table class="w-full min-w-[760px] text-left text-sm">
+          <thead class="bg-subtle text-xs font-mono uppercase tracking-wider text-muted">
+            <tr><th class="p-4">Dimension</th><th class="p-4">Centralized</th><th class="p-4">Decentralized</th><th class="p-4">Practical Signal</th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr><td class="p-4 font-bold text-heading">Speed</td><td class="p-4 text-muted">Slower for exceptions</td><td class="p-4 text-muted">Faster locally</td><td class="p-4"><span class="rounded-lg bg-warn/20 px-2 py-1 text-xs font-mono text-warn">Approval latency</span></td></tr>
+            <tr><td class="p-4 font-bold text-heading">Consistency</td><td class="p-4 text-muted">High</td><td class="p-4 text-muted">Variable</td><td class="p-4"><span class="rounded-lg bg-accent/15 px-2 py-1 text-xs font-mono text-accent">Standard variance</span></td></tr>
+            <tr><td class="p-4 font-bold text-heading">Accountability</td><td class="p-4 text-muted">Clear at top</td><td class="p-4 text-muted">Clear by domain</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Decision owner</span></td></tr>
+            <tr><td class="p-4 font-bold text-heading">Talent growth</td><td class="p-4 text-muted">Narrower autonomy</td><td class="p-4 text-muted">Broader ownership</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Leadership reps</span></td></tr>
+            <tr><td class="p-4 font-bold text-heading">Risk control</td><td class="p-4 text-muted">Strong preventive controls</td><td class="p-4 text-muted">Requires guardrails</td><td class="p-4"><span class="rounded-lg bg-danger/15 px-2 py-1 text-xs font-mono text-danger">Policy exceptions</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="section-03" class="mb-12">
+      <div class="mb-5 flex items-baseline gap-3">
+        <span class="font-mono text-sm font-bold text-accent">03</span>
+        <h2 class="font-serif text-3xl font-bold text-heading">Simple Organizational Diagrams</h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        <div class="overflow-x-auto rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <h3 class="mb-4 font-serif text-xl font-bold text-heading">Centralized Flow</h3>
+          <svg viewBox="0 0 520 310" class="min-w-[420px]" role="img" aria-label="Centralized organization diagram">
+            <defs><marker id="arrow-c" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" class="fill-accent"></path></marker></defs>
+            <rect x="180" y="20" width="160" height="54" rx="14" class="fill-accent/15 stroke-accent"></rect>
+            <text x="260" y="52" text-anchor="middle" class="fill-heading text-sm font-bold">CEO / HQ</text>
+            <line x1="260" y1="74" x2="260" y2="112" class="stroke-accent" stroke-width="2" marker-end="url(#arrow-c)"></line>
+            <rect x="150" y="112" width="220" height="54" rx="14" class="fill-subtle stroke-border"></rect>
+            <text x="260" y="145" text-anchor="middle" class="fill-heading text-sm font-bold">Central Leadership Team</text>
+            <line x1="260" y1="166" x2="100" y2="212" class="stroke-accent" stroke-width="2" marker-end="url(#arrow-c)"></line>
+            <line x1="260" y1="166" x2="260" y2="212" class="stroke-accent" stroke-width="2" marker-end="url(#arrow-c)"></line>
+            <line x1="260" y1="166" x2="420" y2="212" class="stroke-accent" stroke-width="2" marker-end="url(#arrow-c)"></line>
+            <rect x="30" y="212" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <rect x="190" y="212" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <rect x="350" y="212" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <text x="100" y="244" text-anchor="middle" class="fill-text text-xs font-bold">Region A</text>
+            <text x="260" y="244" text-anchor="middle" class="fill-text text-xs font-bold">Product B</text>
+            <text x="420" y="244" text-anchor="middle" class="fill-text text-xs font-bold">Function C</text>
+          </svg>
+        </div>
+        <div class="overflow-x-auto rounded-2xl border border-border bg-surface p-5 shadow-sm">
+          <h3 class="mb-4 font-serif text-xl font-bold text-heading">Decentralized Flow</h3>
+          <svg viewBox="0 0 520 310" class="min-w-[420px]" role="img" aria-label="Decentralized organization diagram">
+            <defs><marker id="arrow-d" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L0,6 L7,3 z" class="fill-success"></path></marker></defs>
+            <rect x="180" y="20" width="160" height="54" rx="14" class="fill-success/15 stroke-success"></rect>
+            <text x="260" y="52" text-anchor="middle" class="fill-heading text-sm font-bold">Enterprise Guardrails</text>
+            <line x1="260" y1="74" x2="100" y2="122" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <line x1="260" y1="74" x2="260" y2="122" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <line x1="260" y1="74" x2="420" y2="122" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <rect x="30" y="122" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <rect x="190" y="122" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <rect x="350" y="122" width="140" height="54" rx="14" class="fill-surface stroke-border"></rect>
+            <text x="100" y="154" text-anchor="middle" class="fill-heading text-xs font-bold">Region A</text>
+            <text x="260" y="154" text-anchor="middle" class="fill-heading text-xs font-bold">Product B</text>
+            <text x="420" y="154" text-anchor="middle" class="fill-heading text-xs font-bold">Market C</text>
+            <line x1="100" y1="176" x2="100" y2="218" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <line x1="260" y1="176" x2="260" y2="218" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <line x1="420" y1="176" x2="420" y2="218" class="stroke-success" stroke-width="2" marker-end="url(#arrow-d)"></line>
+            <circle cx="100" cy="240" r="28" class="fill-subtle stroke-border"></circle>
+            <circle cx="260" cy="240" r="28" class="fill-subtle stroke-border"></circle>
+            <circle cx="420" cy="240" r="28" class="fill-subtle stroke-border"></circle>
+            <text x="100" y="245" text-anchor="middle" class="fill-text text-xs font-bold">Team</text>
+            <text x="260" y="245" text-anchor="middle" class="fill-text text-xs font-bold">Team</text>
+            <text x="420" y="245" text-anchor="middle" class="fill-text text-xs font-bold">Team</text>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-04" class="mb-12">
+      <div class="mb-5 flex items-baseline gap-3">
+        <span class="font-mono text-sm font-bold text-accent">04</span>
+        <h2 class="font-serif text-3xl font-bold text-heading">Pros and Cons</h2>
+      </div>
+      <div class="grid gap-5 lg:grid-cols-2">
+        <div class="rounded-2xl border border-border bg-surface p-6 shadow-sm">
+          <h3 class="font-serif text-2xl font-bold text-heading">Centralized</h3>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono font-bold text-success">PROS</span><ul class="mt-3 space-y-2 text-sm text-muted"><li>Clear strategic alignment.</li><li>Lower duplication of work.</li><li>Stronger compliance oversight.</li><li>Economies of scale in shared services.</li></ul></div>
+            <div><span class="rounded-lg bg-danger/15 px-2 py-1 text-xs font-mono font-bold text-danger">CONS</span><ul class="mt-3 space-y-2 text-sm text-muted"><li>Slow local decisions.</li><li>Lower frontline ownership.</li><li>Executives carry too many escalations.</li><li>Blind spots in diverse markets.</li></ul></div>
+          </div>
+        </div>
+        <div class="rounded-2xl border border-border bg-surface p-6 shadow-sm">
+          <h3 class="font-serif text-2xl font-bold text-heading">Decentralized</h3>
+          <div class="mt-5 grid gap-4 sm:grid-cols-2">
+            <div><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono font-bold text-success">PROS</span><ul class="mt-3 space-y-2 text-sm text-muted"><li>Faster adaptation.</li><li>Higher manager ownership.</li><li>Better customer and regional fit.</li><li>More leadership development reps.</li></ul></div>
+            <div><span class="rounded-lg bg-danger/15 px-2 py-1 text-xs font-mono font-bold text-danger">CONS</span><ul class="mt-3 space-y-2 text-sm text-muted"><li>Inconsistent standards.</li><li>Duplicated investments.</li><li>Harder enterprise coordination.</li><li>Requires mature metrics and governance.</li></ul></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="section-05" class="mb-12">
+      <div class="mb-5 flex items-baseline gap-3">
+        <span class="font-mono text-sm font-bold text-accent">05</span>
+        <h2 class="font-serif text-3xl font-bold text-heading">Decision Matrix</h2>
+      </div>
+      <div class="overflow-x-auto rounded-2xl border border-border bg-surface shadow-sm">
+        <table class="w-full min-w-[820px] text-left text-sm">
+          <thead class="bg-subtle text-xs font-mono uppercase tracking-wider text-muted">
+            <tr><th class="p-4">If this is true...</th><th class="p-4">Lean Centralized</th><th class="p-4">Lean Decentralized</th><th class="p-4">Hybrid Rule</th></tr>
+          </thead>
+          <tbody class="divide-y divide-border">
+            <tr><td class="p-4 font-bold text-heading">Decision is high-risk, irreversible, or regulated</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Strong fit</span></td><td class="p-4 text-muted">Limited</td><td class="p-4 text-muted">Central approval, local input.</td></tr>
+            <tr><td class="p-4 font-bold text-heading">Customer needs differ by region or segment</td><td class="p-4 text-muted">Weak fit</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Strong fit</span></td><td class="p-4 text-muted">Central brand rules, local offers.</td></tr>
+            <tr><td class="p-4 font-bold text-heading">Work benefits from scale and standardization</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Strong fit</span></td><td class="p-4 text-muted">Moderate</td><td class="p-4 text-muted">Shared service with service-level agreements.</td></tr>
+            <tr><td class="p-4 font-bold text-heading">Market changes weekly or daily</td><td class="p-4 text-muted">Weak fit</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Strong fit</span></td><td class="p-4 text-muted">Decentralize within explicit risk limits.</td></tr>
+            <tr><td class="p-4 font-bold text-heading">Brand, safety, or legal consistency matters</td><td class="p-4"><span class="rounded-lg bg-success/15 px-2 py-1 text-xs font-mono text-success">Strong fit</span></td><td class="p-4 text-muted">Guardrailed</td><td class="p-4 text-muted">Central standards, local execution.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <details class="mt-5 overflow-hidden rounded-2xl border border-border bg-surface shadow-sm">
+        <summary class="cursor-pointer px-5 py-4 font-serif text-lg font-bold text-heading">How to choose in practice</summary>
+        <div class="px-5 pb-5 text-muted">
+          <p>Start by classifying decisions by reversibility, risk, speed requirement, and local context. Centralize the few decisions where mistakes are expensive or enterprise-wide; decentralize the many decisions where speed and proximity create advantage.</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface text-sm shadow-lg transition-transform hover:scale-110" aria-label="Toggle theme"></button>
+  <script>
+  (function () {
+    var themes = ['system', 'light', 'dark'];
+    var icons = { system: '◐', light: '☀', dark: '☾' };
+    var current = 'system';
+
+    function apply(t) {
+      if (t === 'system') {
+        document.documentElement.setAttribute('data-theme',
+          window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+      } else {
+        document.documentElement.setAttribute('data-theme', t);
+      }
+      document.getElementById('theme-toggle').textContent = icons[t];
+    }
+
+    apply(current);
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var idx = themes.indexOf(current);
+      current = themes[(idx + 1) % themes.length];
+      apply(current);
+    });
+
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function () {
+      if (current === 'system') apply('system');
+    });
+  })();
+  </script>
+</body>
+</html>

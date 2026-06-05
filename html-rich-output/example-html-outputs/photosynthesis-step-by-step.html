@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Photosynthesis Step by Step</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <style type="text/tailwindcss">
+    @theme {
+      --color-bg: #F6FBF3;
+      --color-surface: #FFFFFF;
+      --color-text: #294032;
+      --color-heading: #102418;
+      --color-muted: #6E8174;
+      --color-border: #CFE0D2;
+      --color-subtle: #EAF4E9;
+      --color-accent: #2F9E44;
+      --color-success: #1B7F5A;
+      --color-danger: #B45A3C;
+      --color-warn: #B88722;
+      --color-sun: #F6C945;
+      --color-water: #3BA7D8;
+      --color-air: #8AA8FF;
+      --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+      --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+    }
+
+    [data-theme="dark"] {
+      --color-bg: #08130C;
+      --color-surface: #111E16;
+      --color-text: #D8E6D9;
+      --color-heading: #F2FFF4;
+      --color-muted: #8EA194;
+      --color-border: #2B4533;
+      --color-subtle: #172A1E;
+      --color-accent: #6FD37F;
+      --color-success: #7AD9B0;
+      --color-danger: #E07A5F;
+      --color-warn: #E1B75D;
+      --color-sun: #FFD966;
+      --color-water: #72C7F0;
+      --color-air: #A7B8FF;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-bg text-text font-sans antialiased">
+  <main class="mx-auto max-w-6xl px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+    <header class="mb-6 sm:mb-10">
+      <div class="mb-3 flex flex-wrap items-center gap-2">
+        <span class="rounded-full bg-accent/15 px-3 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-accent">Biology explainer</span>
+        <span class="rounded-full bg-sun/20 px-3 py-1 text-xs font-mono font-semibold uppercase tracking-wider text-warn">Light + carbon + water</span>
+      </div>
+      <h1 class="font-serif text-4xl font-bold leading-tight text-heading sm:text-5xl lg:text-6xl">Photosynthesis, step by step</h1>
+      <p class="mt-4 max-w-3xl text-base leading-7 text-muted sm:text-lg">A visual walkthrough of how plants turn sunlight, carbon dioxide, and water into sugar, oxygen, and stored chemical energy.</p>
+    </header>
+
+    <section class="mb-8 rounded-2xl border border-border border-l-4 border-l-accent bg-surface p-5 shadow-sm sm:p-6">
+      <p class="text-base leading-7 sm:text-lg"><strong class="text-heading">TL;DR</strong> — Photosynthesis happens in chloroplasts. Light reactions capture sunlight to split water and make energy carriers, then the Calvin cycle uses those carriers to build sugar from carbon dioxide. Oxygen is released as a byproduct, while glucose stores energy the plant can use later.</p>
+    </section>
+
+    <section class="mb-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <div class="mb-1.5 font-mono text-xs uppercase tracking-wider text-muted">Inputs</div>
+        <div class="text-lg font-semibold text-heading">Light, CO₂, H₂O</div>
+      </div>
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <div class="mb-1.5 font-mono text-xs uppercase tracking-wider text-muted">Location</div>
+        <div class="text-lg font-semibold text-heading">Chloroplasts</div>
+      </div>
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <div class="mb-1.5 font-mono text-xs uppercase tracking-wider text-muted">Two phases</div>
+        <div class="text-lg font-semibold text-heading">Light reactions + Calvin cycle</div>
+      </div>
+      <div class="rounded-xl border border-border bg-surface p-5">
+        <div class="mb-1.5 font-mono text-xs uppercase tracking-wider text-muted">Outputs</div>
+        <div class="text-lg font-semibold text-heading">Sugar + O₂</div>
+      </div>
+    </section>
+
+    <div class="grid gap-8 lg:grid-cols-[220px_1fr]">
+      <aside class="hidden lg:block">
+        <nav class="sticky top-8 rounded-2xl border border-border bg-surface p-4 text-sm shadow-sm">
+          <div class="mb-3 font-mono text-xs uppercase tracking-wider text-muted">Steps</div>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle" href="#step-1">01 Capture light</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle" href="#step-2">02 Split water</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle" href="#step-3">03 Make ATP/NADPH</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle" href="#step-4">04 Fix carbon</a>
+          <a class="block rounded-lg px-3 py-2 text-text hover:bg-subtle" href="#step-5">05 Build sugar</a>
+        </nav>
+      </aside>
+
+      <div class="space-y-8">
+        <section id="step-1" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-accent px-3 py-2 font-mono text-sm font-bold text-white">01</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">Chlorophyll captures light</h2>
+              <p class="mt-2 leading-7 text-muted">Sunlight hits chlorophyll pigments inside the thylakoid membranes of chloroplasts. The light energy excites electrons, starting an electron flow.</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-border bg-subtle p-4">
+            <svg class="mx-auto min-w-[520px]" width="720" height="260" viewBox="0 0 720 260" role="img" aria-label="Sunlight striking a leaf and chloroplast">
+              <defs>
+                <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="fill-accent"></path></marker>
+              </defs>
+              <circle cx="90" cy="70" r="38" class="fill-sun"></circle>
+              <g class="stroke-sun" stroke-width="4" stroke-linecap="round">
+                <line x1="90" y1="15" x2="90" y2="0"></line><line x1="90" y1="140" x2="90" y2="125"></line><line x1="35" y1="70" x2="18" y2="70"></line><line x1="162" y1="70" x2="145" y2="70"></line><line x1="50" y1="30" x2="38" y2="18"></line><line x1="130" y1="110" x2="142" y2="122"></line>
+              </g>
+              <path d="M155 83 C245 35, 368 60, 438 148" class="fill-none stroke-accent" stroke-width="4" marker-end="url(#arrow)"></path>
+              <path d="M320 78 C450 10, 610 88, 615 182 C492 248, 348 214, 320 78Z" class="fill-accent/25 stroke-accent" stroke-width="3"></path>
+              <path d="M330 88 C430 108, 520 130, 606 180" class="fill-none stroke-accent" stroke-width="3"></path>
+              <ellipse cx="485" cy="145" rx="70" ry="42" class="fill-surface stroke-border" stroke-width="3"></ellipse>
+              <path d="M440 145 C465 118, 510 118, 535 145 C510 172, 465 172, 440 145Z" class="fill-accent/30 stroke-accent" stroke-width="2"></path>
+              <text x="65" y="78" class="fill-heading font-mono text-sm font-bold">light</text>
+              <text x="448" y="151" class="fill-heading font-mono text-sm font-bold">chloroplast</text>
+            </svg>
+          </div>
+        </section>
+
+        <section id="step-2" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-water px-3 py-2 font-mono text-sm font-bold text-white">02</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">Water is split, oxygen leaves</h2>
+              <p class="mt-2 leading-7 text-muted">The plant replaces lost electrons by splitting water molecules. This releases electrons, hydrogen ions, and oxygen gas.</p>
+            </div>
+          </div>
+          <div class="grid gap-4 md:grid-cols-2">
+            <div class="rounded-xl bg-subtle p-4">
+              <div class="mb-2 font-mono text-xs uppercase tracking-wider text-muted">Reaction fragment</div>
+              <p class="font-mono text-lg text-heading">2H₂O → O₂ + 4H⁺ + 4e⁻</p>
+            </div>
+            <div class="rounded-xl bg-subtle p-4">
+              <span class="rounded-lg bg-success/15 px-2 py-1 font-mono text-xs font-semibold text-success">OUTPUT</span>
+              <p class="mt-2 leading-7 text-muted">The oxygen animals breathe is mostly this leftover product from water splitting.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="step-3" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-warn px-3 py-2 font-mono text-sm font-bold text-white">03</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">Electron flow makes ATP and NADPH</h2>
+              <p class="mt-2 leading-7 text-muted">Excited electrons move through protein complexes in the thylakoid membrane. Their energy pumps hydrogen ions, creating a gradient that powers ATP synthase.</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-border bg-subtle p-4">
+            <svg class="mx-auto min-w-[620px]" width="820" height="250" viewBox="0 0 820 250" role="img" aria-label="Thylakoid membrane electron transport chain diagram">
+              <defs>
+                <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="fill-accent"></path></marker>
+              </defs>
+              <rect x="45" y="95" width="730" height="58" rx="28" class="fill-accent/20 stroke-accent" stroke-width="2"></rect>
+              <rect x="110" y="70" width="80" height="110" rx="18" class="fill-surface stroke-border" stroke-width="3"></rect>
+              <rect x="320" y="70" width="80" height="110" rx="18" class="fill-surface stroke-border" stroke-width="3"></rect>
+              <rect x="545" y="70" width="80" height="110" rx="18" class="fill-surface stroke-border" stroke-width="3"></rect>
+              <path d="M192 112 C235 74, 278 74, 320 112" class="fill-none stroke-accent" stroke-width="4" marker-end="url(#arrow2)"></path>
+              <path d="M402 112 C452 77, 497 77, 545 112" class="fill-none stroke-accent" stroke-width="4" marker-end="url(#arrow2)"></path>
+              <path d="M625 112 C670 75, 708 75, 750 112" class="fill-none stroke-accent" stroke-width="4" marker-end="url(#arrow2)"></path>
+              <circle cx="735" cy="112" r="22" class="fill-success/25 stroke-success" stroke-width="3"></circle>
+              <text x="128" y="130" class="fill-heading font-mono text-sm font-bold">PSII</text>
+              <text x="337" y="130" class="fill-heading font-mono text-sm font-bold">ETC</text>
+              <text x="566" y="130" class="fill-heading font-mono text-sm font-bold">PSI</text>
+              <text x="710" y="116" class="fill-heading font-mono text-xs font-bold">NADPH</text>
+              <text x="68" y="50" class="fill-muted font-mono text-xs">H⁺ builds up inside thylakoid</text>
+              <path d="M260 42 L260 88" class="fill-none stroke-water" stroke-width="3" marker-end="url(#arrow2)"></path>
+              <path d="M470 184 L470 226" class="fill-none stroke-warn" stroke-width="3" marker-end="url(#arrow2)"></path>
+              <text x="430" y="238" class="fill-heading font-mono text-sm font-bold">ATP made</text>
+            </svg>
+          </div>
+        </section>
+
+        <section id="step-4" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-air px-3 py-2 font-mono text-sm font-bold text-white">04</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">Carbon dioxide is fixed</h2>
+              <p class="mt-2 leading-7 text-muted">In the Calvin cycle, the enzyme Rubisco attaches CO₂ to a five-carbon molecule called RuBP. The unstable product quickly becomes two three-carbon molecules.</p>
+            </div>
+          </div>
+          <details class="rounded-xl border border-border bg-subtle p-4">
+            <summary class="cursor-pointer font-serif text-lg font-semibold text-heading">Why “fixed” means usable</summary>
+            <p class="mt-3 leading-7 text-muted">Carbon fixation means inorganic carbon from air becomes part of an organic molecule. That makes the carbon usable for building sugars and plant tissues.</p>
+          </details>
+        </section>
+
+        <section id="step-5" class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <div class="mb-4 flex items-start gap-4">
+            <span class="rounded-xl bg-success px-3 py-2 font-mono text-sm font-bold text-white">05</span>
+            <div>
+              <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">The Calvin cycle builds sugar</h2>
+              <p class="mt-2 leading-7 text-muted">ATP supplies energy and NADPH supplies high-energy electrons. After several turns, the cycle exports G3P, a small sugar that can be assembled into glucose, starch, cellulose, and other plant molecules.</p>
+            </div>
+          </div>
+          <div class="overflow-x-auto rounded-xl border border-border bg-subtle p-4">
+            <svg class="mx-auto min-w-[560px]" width="760" height="360" viewBox="0 0 760 360" role="img" aria-label="Calvin cycle diagram showing carbon dioxide entering and sugar leaving">
+              <defs>
+                <marker id="arrow3" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" class="fill-accent"></path></marker>
+              </defs>
+              <circle cx="380" cy="180" r="105" class="fill-accent/10 stroke-accent" stroke-width="4"></circle>
+              <path d="M380 75 A105 105 0 0 1 485 180" class="fill-none stroke-accent" stroke-width="5" marker-end="url(#arrow3)"></path>
+              <path d="M485 180 A105 105 0 0 1 380 285" class="fill-none stroke-accent" stroke-width="5" marker-end="url(#arrow3)"></path>
+              <path d="M380 285 A105 105 0 0 1 275 180" class="fill-none stroke-accent" stroke-width="5" marker-end="url(#arrow3)"></path>
+              <path d="M275 180 A105 105 0 0 1 380 75" class="fill-none stroke-accent" stroke-width="5" marker-end="url(#arrow3)"></path>
+              <rect x="306" y="52" width="148" height="46" rx="12" class="fill-surface stroke-border" stroke-width="2"></rect>
+              <rect x="470" y="157" width="130" height="46" rx="12" class="fill-surface stroke-border" stroke-width="2"></rect>
+              <rect x="304" y="262" width="152" height="46" rx="12" class="fill-surface stroke-border" stroke-width="2"></rect>
+              <rect x="160" y="157" width="130" height="46" rx="12" class="fill-surface stroke-border" stroke-width="2"></rect>
+              <text x="334" y="80" class="fill-heading font-mono text-sm font-bold">CO₂ fixed</text>
+              <text x="498" y="185" class="fill-heading font-mono text-sm font-bold">ATP + NADPH</text>
+              <text x="344" y="291" class="fill-heading font-mono text-sm font-bold">G3P sugar</text>
+              <text x="187" y="185" class="fill-heading font-mono text-sm font-bold">RuBP reset</text>
+              <path d="M98 80 C158 60, 226 65, 305 73" class="fill-none stroke-air" stroke-width="4" marker-end="url(#arrow3)"></path>
+              <text x="64" y="75" class="fill-heading font-mono text-sm font-bold">CO₂ in</text>
+              <path d="M456 285 C540 315, 620 315, 690 280" class="fill-none stroke-success" stroke-width="4" marker-end="url(#arrow3)"></path>
+              <text x="615" y="316" class="fill-heading font-mono text-sm font-bold">sugar out</text>
+            </svg>
+          </div>
+        </section>
+
+        <section class="rounded-2xl border border-border bg-surface p-5 shadow-sm sm:p-7">
+          <h2 class="font-serif text-2xl font-bold text-heading sm:text-3xl">Whole-process equation</h2>
+          <p class="mt-2 leading-7 text-muted">This summary equation hides many enzyme-driven steps, but it captures the overall material flow.</p>
+          <div class="mt-4 overflow-x-auto rounded-xl bg-subtle p-4">
+            <p class="min-w-[560px] text-center font-mono text-lg font-semibold text-heading sm:text-2xl">6CO₂ + 6H₂O + light → C₆H₁₂O₆ + 6O₂</p>
+          </div>
+          <div class="mt-4 grid gap-3 md:grid-cols-3">
+            <div class="rounded-xl border border-border p-4"><span class="font-mono text-xs font-semibold text-air">CARBON</span><p class="mt-1 text-sm leading-6 text-muted">CO₂ provides carbon atoms for sugar.</p></div>
+            <div class="rounded-xl border border-border p-4"><span class="font-mono text-xs font-semibold text-water">WATER</span><p class="mt-1 text-sm leading-6 text-muted">H₂O supplies electrons and releases O₂.</p></div>
+            <div class="rounded-xl border border-border p-4"><span class="font-mono text-xs font-semibold text-sun">LIGHT</span><p class="mt-1 text-sm leading-6 text-muted">Light becomes stored chemical energy.</p></div>
+          </div>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <button id="theme-toggle" class="fixed bottom-6 right-6 z-50 flex h-10 w-10 cursor-pointer items-center justify-center rounded-full border border-border bg-surface text-sm shadow-lg transition-transform hover:scale-110" aria-label="Toggle theme"></button>
+  <script>
+  (function () {
+    var themes = ['system', 'light', 'dark'];
+    var icons = { system: '◐', light: '☀', dark: '☾' };
+    var current = 'system';
+    var media = window.matchMedia('(prefers-color-scheme: dark)');
+
+    function apply(t) {
+      document.documentElement.setAttribute('data-theme', t === 'system' && media.matches ? 'dark' : t === 'system' ? 'light' : t);
+      document.getElementById('theme-toggle').textContent = icons[t];
+      document.getElementById('theme-toggle').setAttribute('title', 'Theme: ' + t);
+    }
+
+    apply(current);
+
+    document.getElementById('theme-toggle').addEventListener('click', function () {
+      var idx = themes.indexOf(current);
+      current = themes[(idx + 1) % themes.length];
+      apply(current);
+    });
+
+    media.addEventListener('change', function () {
+      if (current === 'system') apply('system');
+    });
+  })();
+  </script>
+</body>
+</html>
