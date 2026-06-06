@@ -20,9 +20,9 @@ Save generated HTML files to the platform-specific global cache:
 
 | Platform | Path |
 |----------|------|
-| Linux | `~/.cache/html-rich-outputs/` |
-| macOS | `~/Library/Caches/html-rich-outputs/` |
-| Windows | `%localappdata%\html-rich-outputs\` |
+| Linux | `~/.cache/html-rich-output/outputs/` |
+| macOS | `~/Library/Caches/html-rich-output/outputs/` |
+| Windows | `%localappdata%\html-rich-output\outputs\` |
 
 Use descriptive lowercase-hyphenated filenames (e.g. `plan-comment-threads.html`).
 
