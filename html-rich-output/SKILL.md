@@ -18,11 +18,9 @@ Do NOT use for normal conversation, short answers, or standard terminal output.
 
 Save generated HTML files to the platform-specific global cache:
 
-| Platform | Path |
-|----------|------|
-| Linux | `~/.cache/html-rich-output/outputs/` |
-| macOS | `~/Library/Caches/html-rich-output/outputs/` |
-| Windows | `%localappdata%\html-rich-output\outputs\` |
+- Linux: `~/.cache/html-rich-output/outputs/`
+- macOS: `~/Library/Caches/html-rich-output/outputs/`
+- Windows: `%localappdata%\html-rich-output\outputs\`
 
 Use descriptive lowercase-hyphenated filenames (e.g. `plan-comment-threads.html`).
 
@@ -30,11 +28,9 @@ Use descriptive lowercase-hyphenated filenames (e.g. `plan-comment-threads.html`
 1. Print the full file path in your chat response so the user can copy it.
 2. Auto-open the file in the default browser using the platform command:
 
-| Platform | Bash command | Notes |
-|----------|-------------|-------|
-| Linux | `xdg-open "<file>"` | Standard on all major distros |
-| macOS | `open "<file>"` | Built-in |
-| Windows | `cmd /c start "" "<file>"` | `start` is a cmd built-in, so route through `cmd /c`. Works from any shell (PowerShell, Git Bash, WSL) |
+- Linux: `xdg-open "<file>"`
+- macOS: `open "<file>"`
+- Windows: `start "<file>"`
 
 ## Core rules
 
@@ -171,7 +167,6 @@ This skill is **universal** — it works for any topic: coding, science, history
 - Open-questions section at the bottom
 
 ### 2. Reports, Research & Learning
-- Sticky left sidebar nav on desktop (`sticky top-8`), hidden on mobile
 - Collapsible step-by-step walkthrough of a process or chain of events
 - Tabbed content for different perspectives, eras, or data sources
 - Callout box pattern for important notes
