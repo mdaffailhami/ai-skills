@@ -1,32 +1,35 @@
 ---
-name: html-rich-output
-description: Use ONLY when the user explicitly asks to create an HTML artifact, output, or file, or references the "html-rich-output" skill directly.
+name: respond-in-html
+description: Use ONLY when the user asks to respond in HTML instead of Markdown — e.g. "respond in HTML", "answer in HTML", "explain this in HTML".
 ---
 
-# HTML Rich Output
+# respond-in-html
 
 ## When to activate
 
-Only use this skill when the user explicitly asks for:
-- "make an HTML artifact", "create an HTML file", "use the html-rich-output skill", etc
-- "create a visual plan/report/review/explainer/diagram/deck"
-- Any variant that clearly signals they want rich HTML, not Markdown
+This skill makes the agent **respond in HTML instead of Markdown** — HTML is the response format, the `.html` file is just the transport (browsers can render what the conversation window can't).
 
-Do NOT use for normal conversation, short answers, or standard terminal output.
+Only use this skill when the user explicitly asks to respond in HTML instead of Markdown:
+- "explain this in HTML", "respond in HTML", "answer in HTML", "use the respond-in-html skill"
+- Any variant that signals they want the richer reading experience
 
-## Output location
+Do NOT use for normal conversation, short answers, or standard text output.
+
+## How it works
+
+HTML can't be rendered inline in the conversation window, so responses are delivered as self-contained `.html` files and auto-opened in the browser. The file is the transport — the skill's purpose is to **respond in HTML**, not to "generate a file."
 
 Save generated HTML files to the platform-specific global cache:
 
-- Linux: `~/.cache/html-rich-output/outputs/`
-- macOS: `~/Library/Caches/html-rich-output/outputs/`
-- Windows: `%localappdata%\html-rich-output\outputs\`
+- Linux: `~/.cache/respond-in-html/outputs/`
+- macOS: `~/Library/Caches/respond-in-html/outputs/`
+- Windows: `%localappdata%\respond-in-html\outputs\`
 
 Use descriptive lowercase-hyphenated filenames (e.g. `plan-comment-threads.html`).
 
 **After saving the file,** always:
-1. Print the full file path in your chat response so the user can copy it.
-2. Auto-open the file in the default browser using the platform command:
+1. Print the full file path link in your response (`file:///path/to/file`).
+2. Auto-open the file using the platform command:
 
 - Linux: `xdg-open "<file>"`
 - macOS: `open "<file>"`
@@ -35,7 +38,7 @@ Use descriptive lowercase-hyphenated filenames (e.g. `plan-comment-threads.html`
 ## Core rules
 
 ### Self-contained
-- **Single `.html` file.** No npm, no build step.
+- **Single `.html` file.** This is the transport for your HTML response — no npm, no build step.
 - Tailwind v4 via Play CDN is required. Add this in `<head>`:
 
 ```html
@@ -154,49 +157,6 @@ This makes every file themable with no `dark:` class proliferation — just sema
 
 ---
 
-## Use cases & patterns
-
-This skill is **universal** — it works for any topic: coding, science, history, business, law, education, health, etc. The patterns below apply regardless of subject matter.
-
-### 1. Exploration & Planning
-- Side-by-side grid for comparing approaches, theories, or strategies
-- Milestone timeline with dots and connecting lines
-- Inline SVG diagrams (process flows, causal chains, systems)
-- Data tables and inline visualizations
-- Risk/uncertainty table with severity tags
-- Open-questions section at the bottom
-
-### 2. Reports, Research & Learning
-- Collapsible step-by-step walkthrough of a process or chain of events
-- Tabbed content for different perspectives, eras, or data sources
-- Callout box pattern for important notes
-- FAQ at the bottom
-- Use inline SVG for scientific diagrams, maps, anatomical illustrations, chemical structures, or any domain-specific visual
-
-### 3. Code Review
-- PR header: branch, author, +/− stats, description
-- Risk map: horizontal chip list linking to file sections, color-coded
-- Annotated diffs with inline comments
-- Low-risk files in collapsed `<details>`
-- Suggested next steps checklist
-
-### 4. Design & Prototyping
-- Visual comparisons (UI designs, architectural styles, color palettes)
-- Component or element grids showing all variants in one view
-- Design decision matrices
-- Interactive what-if calculators or animation sandboxes with sliders
-
-### 5. Slide Decks
-- `<section>` tags for slides, minimal inline JS for left/right arrow navigation.
-
-### 6. Diagrams & Visualizations
-- Inline SVG with Tailwind's `fill-*` and `stroke-*` utility classes.
-- Include `<marker>` defs for arrows.
-- Clickable nodes: `<a>` wrapping SVG elements that scroll to detail sections.
-- Works for any domain: phylogenetic trees, geological timelines, anatomical diagrams, chemical structures, mathematical graphs, economic charts, historical maps, system architectures.
-
----
-
 ## Reusable Tailwind patterns
 
 **TL;DR box:**
@@ -263,8 +223,4 @@ document.querySelectorAll('[data-tabs]').forEach(b => {
 
 ## Reference template
 
-When structuring output, inspect the bundled template to understand visual conventions (responsive grid, typography scale, spacing rhythm, color usage):
-
-- `templates/feature-explainer.html` — Reports, research, how-it-works explainers (any topic)
-
-Adapt its structure to your domain — replace code snippets with data tables, architecture diagrams with scientific illustrations, etc.
+`templates/feature-explainer.html` — a worked example showing how the visual conventions (responsive grid, typography scale, spacing rhythm, color tokens) come together. Inspect it when building your own HTML response, but don't treat it as a rigid blueprint.
