@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Feature Explainer — respond-in-html</title>
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+<script src="https://unpkg.com/lucide@1.17.0"></script>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<style type="text/tailwindcss">
+  @theme {
+    --color-bg: #FAF9F5;
+    --color-surface: #FFFFFF;
+    --color-text: #3D3D3A;
+    --color-heading: #141413;
+    --color-muted: #87867F;
+    --color-border: #D1CFC5;
+    --color-subtle: #F0EEE6;
+    --color-accent: #D97757;
+    --color-success: #788C5D;
+    --color-danger: #B04A3F;
+    --color-warn: #B89B6E;
+    --color-info: #5B8DB8;
+    --color-tip: #9B7EB8;
+    --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --font-serif: ui-serif, Georgia, 'Times New Roman', serif;
+    --font-mono: ui-monospace, 'SF Mono', Menlo, monospace;
+  }
+
+  [data-theme="dark"] {
+    --color-bg: #141413;
+    --color-surface: #1E1E1C;
+    --color-text: #D1CFC5;
+    --color-heading: #FAF9F5;
+    --color-muted: #87867F;
+    --color-border: #3D3D3A;
+    --color-subtle: #2A2A28;
+    --color-accent: #E28A6E;
+    --color-success: #8EA86A;
+    --color-danger: #C45A4E;
+    --color-warn: #C5A46E;
+    --color-info: #7BA8CC;
+    --color-tip: #B89BC8;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+</style>
+</head>
+<body class="bg-bg text-text font-sans antialiased">
+
+<main class="max-w-5xl mx-auto px-5 py-12 sm:py-16">
+
+  <header class="mb-12">
+    <div class="flex items-center gap-3 mb-4">
+      <i data-lucide="layers" class="w-6 h-6 text-accent"></i>
+      <h1 class="text-3xl font-bold text-heading tracking-tight">Component Showcase</h1>
+    </div>
+    <p class="text-muted text-sm leading-relaxed max-w-xl">
+      Every component pattern available in <code class="font-mono text-xs bg-subtle px-1.5 py-0.5 rounded">respond-in-html</code>.
+      Use this as a reference when building your own HTML responses.
+    </p>
+  </header>
+
+  <!-- TL;DR -->
+  <div class="bg-surface border border-border border-l-4 border-l-accent rounded-xl p-5 flex gap-4 mb-10">
+    <i data-lucide="lightbulb" class="w-5 h-5 text-accent shrink-0 mt-0.5"></i>
+    <div>
+      <b class="text-heading">TL;DR</b>
+      <span class="text-text"> — Admonitions, code blocks, Mermaid diagrams, step timelines, data tables, feature cards, comparison cards, KPI cards, and icon badges. All themable, responsive, self-contained.</span>
+    </div>
+  </div>
+
+  <!-- 01: Admonitions -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">01</span>
+      <i data-lucide="message-square-warning" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Admonitions</h2>
+    </div>
+
+    <div class="bg-info/10 border border-info/25 border-l-4 border-l-info rounded-xl p-5 flex gap-4 mb-4">
+      <i data-lucide="info" class="w-5 h-5 text-info shrink-0 mt-0.5"></i>
+      <div>
+        <div class="text-sm font-semibold text-info uppercase tracking-wider mb-1">Note</div>
+        <div class="text-text text-sm leading-relaxed">Informational callout for context or background details.</div>
+      </div>
+    </div>
+
+    <div class="bg-success/10 border border-success/25 border-l-4 border-l-success rounded-xl p-5 flex gap-4 mb-4">
+      <i data-lucide="check-circle" class="w-5 h-5 text-success shrink-0 mt-0.5"></i>
+      <div>
+        <div class="text-sm font-semibold text-success uppercase tracking-wider mb-1">Success</div>
+        <div class="text-text text-sm leading-relaxed">Positive outcome or completed action.</div>
+      </div>
+    </div>
+
+    <div class="bg-warn/10 border border-warn/25 border-l-4 border-l-warn rounded-xl p-5 flex gap-4 mb-4">
+      <i data-lucide="alert-triangle" class="w-5 h-5 text-warn shrink-0 mt-0.5"></i>
+      <div>
+        <div class="text-sm font-semibold text-warn uppercase tracking-wider mb-1">Warning</div>
+        <div class="text-text text-sm leading-relaxed">Something needs attention but is not blocking.</div>
+      </div>
+    </div>
+
+    <div class="bg-danger/10 border border-danger/25 border-l-4 border-l-danger rounded-xl p-5 flex gap-4 mb-4">
+      <i data-lucide="x-octagon" class="w-5 h-5 text-danger shrink-0 mt-0.5"></i>
+      <div>
+        <div class="text-sm font-semibold text-danger uppercase tracking-wider mb-1">Danger</div>
+        <div class="text-text text-sm leading-relaxed">Critical issue or breaking change.</div>
+      </div>
+    </div>
+
+    <div class="bg-tip/10 border border-tip/25 border-l-4 border-l-tip rounded-xl p-5 flex gap-4">
+      <i data-lucide="lightbulb" class="w-5 h-5 text-tip shrink-0 mt-0.5"></i>
+      <div>
+        <div class="text-sm font-semibold text-tip uppercase tracking-wider mb-1">Tip</div>
+        <div class="text-text text-sm leading-relaxed">Helpful suggestion or best practice.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02: Icons & Badges -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">02</span>
+      <i data-lucide="badge-check" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Icons &amp; Badges</h2>
+    </div>
+
+    <div class="bg-surface border border-border rounded-xl p-6 space-y-4">
+      <div>
+        <div class="text-xs font-mono uppercase tracking-wider text-muted mb-2">Severity Badges</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-danger/15 text-danger">
+            <i data-lucide="x-circle" class="w-3 h-3"></i> HIGH
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-warn/20 text-warn">
+            <i data-lucide="clock" class="w-3 h-3"></i> MED
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-success/15 text-success">
+            <i data-lucide="check-circle" class="w-3 h-3"></i> LOW
+          </span>
+        </div>
+      </div>
+      <div>
+        <div class="text-xs font-mono uppercase tracking-wider text-muted mb-2">Tags &amp; Labels</div>
+        <div class="flex flex-wrap gap-2">
+          <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-accent/15 text-accent">
+            <i data-lucide="tag" class="w-3 h-3"></i> v2.0
+          </span>
+          <span class="inline-flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-lg bg-subtle text-muted border border-border">
+            <i data-lucide="git-branch" class="w-3 h-3"></i> main
+          </span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03: KPI Cards -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">03</span>
+      <i data-lucide="bar-chart-3" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">KPI Cards</h2>
+    </div>
+
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+        <div class="text-xs font-mono uppercase tracking-wider text-muted mb-1.5">Effort</div>
+        <div class="text-lg font-semibold text-accent">~2 weeks</div>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+        <div class="text-xs font-mono uppercase tracking-wider text-muted mb-1.5">Risk</div>
+        <div class="text-lg font-semibold text-heading">
+          <span class="inline-flex items-center gap-1 text-sm font-mono text-warn">
+            <i data-lucide="alert-triangle" class="w-4 h-4"></i> Medium
+          </span>
+        </div>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Deploys</div>
+          <i data-lucide="rocket" class="w-4 h-4 text-muted"></i>
+        </div>
+        <div class="text-lg font-semibold text-heading">247</div>
+        <div class="flex items-center gap-1.5 mt-1">
+          <i data-lucide="trending-up" class="w-3.5 h-3.5 text-success"></i>
+          <span class="text-xs font-mono font-semibold text-success">+12%</span>
+        </div>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+        <div class="flex items-center justify-between mb-1.5">
+          <div class="text-xs font-mono uppercase tracking-wider text-muted">Errors</div>
+          <i data-lucide="bug" class="w-4 h-4 text-muted"></i>
+        </div>
+        <div class="text-lg font-semibold text-heading">3</div>
+        <div class="flex items-center gap-1.5 mt-1">
+          <i data-lucide="trending-down" class="w-3.5 h-3.5 text-success"></i>
+          <span class="text-xs font-mono font-semibold text-success">-41%</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04: Code Block -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">04</span>
+      <i data-lucide="code-2" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Code Block</h2>
+    </div>
+
+    <div class="border border-border rounded-xl bg-surface overflow-hidden" data-codeblock>
+      <div class="flex items-center justify-between px-4 py-2.5 bg-subtle border-b border-border">
+        <div class="flex items-center gap-3">
+          <div class="flex gap-1.5">
+            <span class="w-2.5 h-2.5 rounded-full bg-danger/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-warn/60"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-success/60"></span>
+          </div>
+          <span class="text-xs font-mono text-muted">src/utils/formatDate.ts</span>
+        </div>
+        <div class="flex items-center gap-2">
+          <span class="text-[10px] font-mono uppercase tracking-wider bg-accent/15 text-accent px-2 py-0.5 rounded-md">ts</span>
+          <button class="text-xs font-mono text-muted hover:text-text transition-colors flex items-center gap-1 cursor-pointer" data-copy>
+            <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+            <span>Copy</span>
+          </button>
+        </div>
+      </div>
+      <pre class="p-5 text-sm font-mono text-text overflow-x-auto leading-relaxed"><code>export function formatDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+  });
+}</code></pre>
+    </div>
+  </section>
+
+  <!-- 05: Mermaid Diagram -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">05</span>
+      <i data-lucide="workflow" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Mermaid Diagram</h2>
+    </div>
+
+    <pre class="mermaid bg-surface border border-border rounded-xl p-6 overflow-x-auto">
+flowchart LR
+  A[User Request] --> B{Load Balancer}
+  B --> C[API Server 1]
+  B --> D[API Server 2]
+  C --> E[(Database)]
+  D --> E
+  E --> F[Cache Layer]
+  F --> G[Response]
+</pre>
+  </section>
+
+  <!-- 06: Step Timeline -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">06</span>
+      <i data-lucide="list-ordered" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Step Timeline</h2>
+    </div>
+
+    <ol class="relative ml-4 border-l-2 border-border space-y-12 pl-8">
+      <li class="relative">
+        <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-surface border-2 border-accent text-accent font-mono text-sm font-bold -translate-x-1/2">1</span>
+        <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="search" class="w-5 h-5 text-accent"></i>
+            <h4 class="text-lg font-semibold text-heading">Research</h4>
+          </div>
+          <p class="text-text text-sm leading-relaxed">Analyze the problem domain. Gather requirements, study existing solutions, and identify constraints.</p>
+        </div>
+      </li>
+      <li class="relative">
+        <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-surface border-2 border-accent text-accent font-mono text-sm font-bold -translate-x-1/2">2</span>
+        <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="pencil" class="w-5 h-5 text-accent"></i>
+            <h4 class="text-lg font-semibold text-heading">Design</h4>
+          </div>
+          <p class="text-text text-sm leading-relaxed">Create architecture diagrams, data models, and API contracts. Review with the team.</p>
+        </div>
+      </li>
+      <li class="relative">
+        <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-surface border-2 border-accent text-accent font-mono text-sm font-bold -translate-x-1/2">3</span>
+        <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="hammer" class="w-5 h-5 text-accent"></i>
+            <h4 class="text-lg font-semibold text-heading">Build</h4>
+          </div>
+          <p class="text-text text-sm leading-relaxed">Implement the solution. Write tests, documentation, and migration scripts.</p>
+        </div>
+      </li>
+      <li class="relative">
+        <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-accent text-surface text-sm font-bold -translate-x-1/2">
+          <i data-lucide="check" class="w-4 h-4"></i>
+        </span>
+        <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+          <div class="flex items-center gap-3 mb-3">
+            <i data-lucide="rocket" class="w-5 h-5 text-accent"></i>
+            <h4 class="text-lg font-semibold text-heading">Ship</h4>
+          </div>
+          <p class="text-text text-sm leading-relaxed">Deploy to production. Monitor metrics, gather feedback, iterate.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <!-- 07: Data Table -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">07</span>
+      <i data-lucide="table" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Data Table</h2>
+    </div>
+
+    <div class="overflow-x-auto border border-border rounded-xl bg-surface">
+      <table class="w-full text-sm text-left">
+        <thead class="text-xs font-mono uppercase tracking-wider text-muted bg-subtle">
+          <tr>
+            <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Endpoint</th>
+            <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Method</th>
+            <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Status</th>
+            <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Latency</th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-border">
+          <tr class="even:bg-subtle/50 hover:bg-subtle transition-colors">
+            <td class="px-5 py-3 font-mono text-text">/api/users</td>
+            <td class="px-5 py-3 font-mono text-xs text-accent">GET</td>
+            <td class="px-5 py-3">
+              <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-success/15 text-success">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Active
+              </span>
+            </td>
+            <td class="px-5 py-3 font-mono text-xs text-muted">42ms</td>
+          </tr>
+          <tr class="even:bg-subtle/50 hover:bg-subtle transition-colors">
+            <td class="px-5 py-3 font-mono text-text">/api/orders</td>
+            <td class="px-5 py-3 font-mono text-xs text-accent">POST</td>
+            <td class="px-5 py-3">
+              <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-success/15 text-success">
+                <i data-lucide="check-circle" class="w-3 h-3"></i> Active
+              </span>
+            </td>
+            <td class="px-5 py-3 font-mono text-xs text-muted">128ms</td>
+          </tr>
+          <tr class="even:bg-subtle/50 hover:bg-subtle transition-colors">
+            <td class="px-5 py-3 font-mono text-text">/api/payments</td>
+            <td class="px-5 py-3 font-mono text-xs text-accent">POST</td>
+            <td class="px-5 py-3">
+              <span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-warn/20 text-warn">
+                <i data-lucide="clock" class="w-3 h-3"></i> Degraded
+              </span>
+            </td>
+            <td class="px-5 py-3 font-mono text-xs text-warn">890ms</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 08: Feature Cards -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">08</span>
+      <i data-lucide="grid" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Feature Cards</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 hover:shadow-sm transition-all group">
+        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/15 transition-colors">
+          <i data-lucide="zap" class="w-5 h-5 text-accent"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-heading mb-2">Fast</h4>
+        <p class="text-text text-sm leading-relaxed">Sub-millisecond response times with edge caching.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 hover:shadow-sm transition-all group">
+        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/15 transition-colors">
+          <i data-lucide="shield" class="w-5 h-5 text-accent"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-heading mb-2">Secure</h4>
+        <p class="text-text text-sm leading-relaxed">End-to-end encryption with SOC2 compliance.</p>
+      </div>
+      <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 hover:shadow-sm transition-all group">
+        <div class="w-10 h-10 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/15 transition-colors">
+          <i data-lucide="scale" class="w-5 h-5 text-accent"></i>
+        </div>
+        <h4 class="text-lg font-semibold text-heading mb-2">Scalable</h4>
+        <p class="text-text text-sm leading-relaxed">Auto-scales from 10 to 10M requests per second.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09: Comparison Cards -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">09</span>
+      <i data-lucide="git-compare" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Comparison Cards</h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="border border-border rounded-xl bg-subtle/50 overflow-hidden">
+        <div class="px-5 py-3 bg-subtle border-b border-border flex items-center gap-2">
+          <i data-lucide="clock" class="w-4 h-4 text-muted"></i>
+          <span class="text-sm font-semibold text-muted uppercase tracking-wider">Before</span>
+        </div>
+        <div class="p-5 text-sm text-text space-y-2">
+          <div class="flex items-start gap-2">
+            <i data-lucide="x" class="w-4 h-4 text-danger shrink-0 mt-0.5"></i>
+            <span>Manual deployment took 45 minutes with frequent rollbacks.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <i data-lucide="x" class="w-4 h-4 text-danger shrink-0 mt-0.5"></i>
+            <span>No rollback mechanism — hotfixes required full redeploy.</span>
+          </div>
+        </div>
+      </div>
+      <div class="border border-accent/25 rounded-xl bg-accent/5 overflow-hidden">
+        <div class="px-5 py-3 bg-accent/15 border-b border-accent/25 flex items-center gap-2">
+          <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
+          <span class="text-sm font-semibold text-accent uppercase tracking-wider">After</span>
+        </div>
+        <div class="p-5 text-sm text-text space-y-2">
+          <div class="flex items-start gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i>
+            <span>Automated CI/CD deploys in under 3 minutes.</span>
+          </div>
+          <div class="flex items-start gap-2">
+            <i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i>
+            <span>One-click rollback via immutable infrastructure.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10: Collapsible -->
+  <section class="mb-12">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="font-mono text-xs text-muted">10</span>
+      <i data-lucide="folder-tree" class="w-5 h-5 text-accent"></i>
+      <h2 class="text-xl font-semibold text-heading">Collapsible Sections</h2>
+    </div>
+
+    <details class="border border-border rounded-xl bg-surface overflow-hidden mb-4">
+      <summary class="cursor-pointer px-5 py-4 flex items-center gap-3">
+        <i data-lucide="folder-tree" class="w-4 h-4 text-muted shrink-0"></i>
+        <span class="font-serif text-lg text-heading">Implementation Details</span>
+        <span class="ml-auto text-xs font-mono text-muted">src/services</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-text leading-relaxed">
+        <p class="mb-3">Secondary content that supports the main narrative but doesn't need to be in the reader's face on first scan.</p>
+        <p>Use <code class="font-mono text-xs bg-subtle px-1.5 py-0.5 rounded">&lt;details&gt;</code> for supplementary explanations, code references, extended examples, and footnotes.</p>
+      </div>
+    </details>
+
+    <details class="border border-border rounded-xl bg-surface overflow-hidden">
+      <summary class="cursor-pointer px-5 py-4 flex items-center gap-3">
+        <i data-lucide="file-text" class="w-4 h-4 text-muted shrink-0"></i>
+        <span class="font-serif text-lg text-heading">Alternative Approach</span>
+        <span class="ml-auto text-xs font-mono text-muted">RFC-042</span>
+      </summary>
+      <div class="px-5 pb-5 text-sm text-text leading-relaxed">
+        <p>Another approach considered was using WebSockets for real-time updates. This was rejected due to infrastructure complexity and the team's familiarity with Server-Sent Events.</p>
+      </div>
+    </details>
+  </section>
+
+</main>
+
+<!-- Theme Toggle -->
+<button id="theme-toggle"
+  class="fixed bottom-6 right-6 z-50 w-10 h-10 rounded-full bg-surface border border-border shadow-lg
+         flex items-center justify-center text-sm hover:scale-110 transition-transform cursor-pointer"
+  aria-label="Toggle theme">
+</button>
+
+<!-- Scripts (must be in this order) -->
+<script>
+document.querySelectorAll('[data-tabs]').forEach(b => {
+  const btns = b.querySelectorAll('button'), panes = b.querySelectorAll('pre');
+  btns.forEach(btn => btn.addEventListener('click', () => {
+    btns.forEach(x => { x.removeAttribute('data-on'); });
+    panes.forEach(x => { x.removeAttribute('data-on'); });
+    btn.setAttribute('data-on', '');
+    panes[+btn.dataset.t].setAttribute('data-on', '');
+  }));
+});
+
+document.querySelectorAll('[data-codeblock]').forEach(function (block) {
+  var btn = block.querySelector('[data-copy]');
+  var code = block.querySelector('code');
+  if (!btn || !code) return;
+  btn.addEventListener('click', function () {
+    navigator.clipboard.writeText(code.textContent || '').then(function () {
+      var span = btn.querySelector('span');
+      var orig = span.textContent;
+      span.textContent = 'Copied!';
+      setTimeout(function () { span.textContent = orig; }, 2000);
+    });
+  });
+});
+</script>
+
+<script>
+(function () {
+  var themes = ['system', 'light', 'dark'];
+  var icons = { system: '◐', light: '☀', dark: '☾' };
+  var current = 'system';
+
+  function apply(t) {
+    if (t === 'system') {
+      document.documentElement.setAttribute('data-theme',
+        window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    } else {
+      document.documentElement.setAttribute('data-theme', t);
+    }
+    document.getElementById('theme-toggle').textContent = icons[t];
+  }
+
+  apply(current);
+
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    var idx = themes.indexOf(current);
+    current = themes[(idx + 1) % themes.length];
+    apply(current);
+  });
+
+  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+    if (current === 'system') apply('system');
+  });
+})();
+</script>
+
+<script>
+(function () {
+  function mermaidTheme() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+      startOnLoad: true,
+      theme: 'base',
+      securityLevel: 'loose',
+      themeVariables: {
+        fontFamily: 'ui-monospace, SF Mono, Menlo, monospace',
+        primaryColor: isDark ? '#3D3D3A' : '#F0EEE6',
+        primaryTextColor: isDark ? '#D1CFC5' : '#3D3D3A',
+        primaryBorderColor: isDark ? '#3D3D3A' : '#D1CFC5',
+        lineColor: isDark ? '#87867F' : '#87867F',
+        secondaryColor: isDark ? '#2A2A28' : '#FAF9F5',
+        tertiaryColor: isDark ? '#1E1E1C' : '#FFFFFF',
+        background: isDark ? '#141413' : '#FAF9F5',
+        mainBkg: isDark ? '#1E1E1C' : '#FFFFFF',
+        nodeBorder: isDark ? '#3D3D3A' : '#D1CFC5',
+        clusterBkg: isDark ? '#2A2A28' : '#F0EEE6',
+        clusterBorder: isDark ? '#3D3D3A' : '#D1CFC5',
+        titleColor: isDark ? '#FAF9F5' : '#141413',
+        edgeLabelBackground: isDark ? '#1E1E1C' : '#FFFFFF'
+      }
+    };
+  }
+
+  mermaid.initialize(mermaidTheme());
+
+  var initDone = false;
+  var observer = new MutationObserver(function () {
+    if (!initDone && document.getElementById('theme-toggle')) {
+      initDone = true;
+      document.getElementById('theme-toggle').addEventListener('click', function () {
+        setTimeout(function () {
+          mermaid.initialize(mermaidTheme());
+          mermaid.run({ querySelector: '.mermaid' });
+        }, 50);
+      });
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>
+
+<script>lucide.createIcons();</script>
+
+</body>
+</html>

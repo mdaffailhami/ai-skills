@@ -1,0 +1,15 @@
+<!--
+  Tab pane — switchable content panes with data-tabs
+
+  USAGE: The <pre> can be replaced with any element (div, etc.).
+  Panels require data-tab="0", data-tab="1" etc matching button data-t values.
+-->
+
+<div class="border border-border rounded-xl bg-surface overflow-hidden" data-tabs>
+  <div class="flex border-b border-border bg-subtle">
+    <button class="px-4 py-2.5 text-xs font-mono text-muted border-r border-border data-[on]:bg-surface data-[on]:text-heading data-[on]:border-b-2 data-[on]:border-b-accent" data-t="0">Tab A</button>
+    <button class="px-4 py-2.5 text-xs font-mono text-muted border-r border-border data-[on]:bg-surface data-[on]:text-heading data-[on]:border-b-2 data-[on]:border-b-accent" data-t="1">Tab B</button>
+  </div>
+  <pre class="hidden p-5 text-sm font-mono text-text data-[on]:block overflow-x-auto" data-tab="0">Content A</pre>
+  <pre class="hidden p-5 text-sm font-mono text-text data-[on]:block overflow-x-auto" data-tab="1">Content B</pre>
+</div>

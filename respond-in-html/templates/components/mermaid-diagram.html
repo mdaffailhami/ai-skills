@@ -1,0 +1,70 @@
+<!--
+  Mermaid diagram — self-contained, theme-reactive
+
+  USAGE:
+  1. Add Mermaid CDN to <head>:
+     <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+
+  2. Wrap each diagram in <pre class="mermaid">:
+     <pre class="mermaid bg-surface border border-border rounded-xl p-6 overflow-x-auto">
+     flowchart TD
+       A[Start] --> B{Decision}
+       B -->|Yes| C[Do this]
+       B -->|No| D[Do that]
+     </pre>
+
+  3. Include Mermaid init script once at bottom of <body> (see below).
+
+  Theme reactivity: The init script reads the current data-theme and passes
+  themeVariables. On theme toggle, it re-runs mermaid.run() to repaint all diagrams.
+-->
+
+<!-- MERMAID INIT SCRIPT — include once, after the theme-toggle script -->
+<script>
+(function () {
+  function mermaidTheme() {
+    var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    return {
+      startOnLoad: true,
+      theme: 'base',
+      securityLevel: 'loose',
+      themeVariables: {
+        fontFamily: 'ui-monospace, SF Mono, Menlo, monospace',
+        primaryColor: isDark ? '#3D3D3A' : '#F0EEE6',
+        primaryTextColor: isDark ? '#D1CFC5' : '#3D3D3A',
+        primaryBorderColor: isDark ? '#3D3D3A' : '#D1CFC5',
+        lineColor: isDark ? '#87867F' : '#87867F',
+        secondaryColor: isDark ? '#2A2A28' : '#FAF9F5',
+        tertiaryColor: isDark ? '#1E1E1C' : '#FFFFFF',
+        background: isDark ? '#141413' : '#FAF9F5',
+        mainBkg: isDark ? '#1E1E1C' : '#FFFFFF',
+        nodeBorder: isDark ? '#3D3D3A' : '#D1CFC5',
+        clusterBkg: isDark ? '#2A2A28' : '#F0EEE6',
+        clusterBorder: isDark ? '#3D3D3A' : '#D1CFC5',
+        titleColor: isDark ? '#FAF9F5' : '#141413',
+        edgeLabelBackground: isDark ? '#1E1E1C' : '#FFFFFF'
+      }
+    };
+  }
+
+  mermaid.initialize(mermaidTheme());
+
+  var originalApply = window._themeApply;
+  var _mermaidHooked = false;
+  var observer = new MutationObserver(function () {
+    if (!_mermaidHooked) {
+      _mermaidHooked = true;
+      var tb = document.getElementById('theme-toggle');
+      if (tb) {
+        tb.addEventListener('click', function () {
+          setTimeout(function () {
+            mermaid.initialize(mermaidTheme());
+            mermaid.run({ querySelector: '.mermaid' });
+          }, 50);
+        });
+      }
+    }
+  });
+  observer.observe(document.body, { childList: true, subtree: true });
+})();
+</script>

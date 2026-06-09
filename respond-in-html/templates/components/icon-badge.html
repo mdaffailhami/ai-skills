@@ -1,0 +1,37 @@
+<!--
+  Icon badge — compact label with icon, used for statuses, tags, labels
+
+  USAGE: Use alongside severity badges. Combine icon + text + color.
+
+  Common patterns:
+    Status:  "check-circle" + "Active"    (success)
+    Status:  "clock"         + "Pending"   (warn)
+    Status:  "x-circle"      + "Failed"    (danger)
+    Tag:     "tag"           + "v2.0"      (accent)
+    Label:   "git-branch"    + "main"      (muted)
+-->
+
+<!-- Status: Active -->
+<span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-success/15 text-success">
+  <i data-lucide="check-circle" class="w-3 h-3"></i> Active
+</span>
+
+<!-- Status: Pending -->
+<span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-warn/20 text-warn">
+  <i data-lucide="clock" class="w-3 h-3"></i> Pending
+</span>
+
+<!-- Status: Failed -->
+<span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-danger/15 text-danger">
+  <i data-lucide="x-circle" class="w-3 h-3"></i> Failed
+</span>
+
+<!-- Tag: version -->
+<span class="inline-flex items-center gap-1 text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-accent/15 text-accent">
+  <i data-lucide="tag" class="w-3 h-3"></i> v2.0
+</span>
+
+<!-- Label: branch -->
+<span class="inline-flex items-center gap-1 text-xs font-mono px-2 py-0.5 rounded-lg bg-subtle text-muted border border-border">
+  <i data-lucide="git-branch" class="w-3 h-3"></i> main
+</span>

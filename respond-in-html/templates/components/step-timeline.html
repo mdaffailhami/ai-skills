@@ -1,0 +1,72 @@
+<!--
+  Step timeline — vertical stepper with alternating cards and connecting line
+
+  USAGE: Repeat the <li> block for each step. The connector line runs through the
+  numbered circle. On mobile the line and card shift to a simpler stack.
+
+  Icon: Use any Lucide icon that fits the step's purpose (e.g.  "rocket", "settings", "check").
+-->
+
+<ol class="relative ml-4 border-l-2 border-border space-y-12 pl-8">
+  <!-- Step 1 -->
+  <li class="relative">
+    <!-- Circle marker -->
+    <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-surface border-2 border-accent text-accent font-mono text-sm font-bold -translate-x-1/2">
+      1
+    </span>
+    <!-- Card -->
+    <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="rocket" class="w-5 h-5 text-accent"></i>
+        <h4 class="text-lg font-semibold text-heading">Step Title</h4>
+      </div>
+      <p class="text-text text-sm leading-relaxed">Step description. Keep it concise.</p>
+    </div>
+  </li>
+
+  <!-- Step 2 -->
+  <li class="relative">
+    <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-surface border-2 border-accent text-accent font-mono text-sm font-bold -translate-x-1/2">
+      2
+    </span>
+    <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="settings" class="w-5 h-5 text-accent"></i>
+        <h4 class="text-lg font-semibold text-heading">Step Title</h4>
+      </div>
+      <p class="text-text text-sm leading-relaxed">Step description.</p>
+    </div>
+  </li>
+
+  <!-- Step 3 (last — use check icon variant) -->
+  <li class="relative">
+    <span class="absolute -left-[calc(2rem+1px)] flex items-center justify-center w-10 h-10 rounded-full bg-accent text-surface font-mono text-sm font-bold -translate-x-1/2">
+      <i data-lucide="check" class="w-4 h-4"></i>
+    </span>
+    <div class="bg-surface border border-border rounded-xl p-6 hover:border-accent/30 transition-colors">
+      <div class="flex items-center gap-3 mb-3">
+        <i data-lucide="flag" class="w-5 h-5 text-accent"></i>
+        <h4 class="text-lg font-semibold text-heading">Done</h4>
+      </div>
+      <p class="text-text text-sm leading-relaxed">Final step description.</p>
+    </div>
+  </li>
+</ol>
+
+<!-- Alternative: compact linear stepper (no cards, just labels) -->
+<ol class="flex items-center gap-0">
+  <li class="flex items-center gap-2">
+    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-accent text-surface font-mono text-xs font-bold">1</span>
+    <span class="text-xs font-semibold text-heading">Plan</span>
+  </li>
+  <li class="flex-1 h-px bg-border mx-2"></li>
+  <li class="flex items-center gap-2">
+    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-accent text-surface font-mono text-xs font-bold">2</span>
+    <span class="text-xs font-semibold text-heading">Build</span>
+  </li>
+  <li class="flex-1 h-px bg-border mx-2"></li>
+  <li class="flex items-center gap-2">
+    <span class="flex items-center justify-center w-7 h-7 rounded-full bg-border text-muted font-mono text-xs font-bold">3</span>
+    <span class="text-xs font-semibold text-muted">Ship</span>
+  </li>
+</ol>

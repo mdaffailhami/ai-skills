@@ -1,0 +1,40 @@
+<!--
+  KPI card — metric with label, optional trend indicator and icon
+
+  USAGE: Use in a grid (grid-cols-2 lg:grid-cols-4). Add trend arrow + color
+  for directional context. Lucide trend icons: "trending-up", "trending-down".
+-->
+
+<!-- Basic stat card (from SKILL.md) -->
+<div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+  <div class="text-xs font-mono uppercase tracking-wider text-muted mb-1.5">Metric Label</div>
+  <div class="text-2xl font-bold text-heading">1,234</div>
+</div>
+
+<!-- KPI card with trend -->
+<div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+  <div class="flex items-center justify-between mb-1.5">
+    <div class="text-xs font-mono uppercase tracking-wider text-muted">Revenue</div>
+    <i data-lucide="dollar-sign" class="w-4 h-4 text-muted"></i>
+  </div>
+  <div class="text-2xl font-bold text-heading mb-1">$24.6K</div>
+  <div class="flex items-center gap-1.5">
+    <i data-lucide="trending-up" class="w-3.5 h-3.5 text-success"></i>
+    <span class="text-xs font-mono font-semibold text-success">+12.5%</span>
+    <span class="text-xs text-muted ml-1">vs last month</span>
+  </div>
+</div>
+
+<!-- KPI card with trend (negative) -->
+<div class="bg-surface border border-border rounded-xl p-5 hover:border-accent/30 transition-colors">
+  <div class="flex items-center justify-between mb-1.5">
+    <div class="text-xs font-mono uppercase tracking-wider text-muted">Errors</div>
+    <i data-lucide="bug" class="w-4 h-4 text-muted"></i>
+  </div>
+  <div class="text-2xl font-bold text-heading mb-1">41</div>
+  <div class="flex items-center gap-1.5">
+    <i data-lucide="trending-down" class="w-3.5 h-3.5 text-danger"></i>
+    <span class="text-xs font-mono font-semibold text-danger">+3</span>
+    <span class="text-xs text-muted ml-1">this week</span>
+  </div>
+</div>

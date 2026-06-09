@@ -6,7 +6,9 @@ Daffa Ilhami's personal collection of skills for AI agents (OpenCode, Claude Cod
 
 | Skill | Description |
 |-------|-------------|
-| [html-rich-output](./html-rich-output) | Generate rich, self-contained HTML artifacts instead of Markdown — plans, reports, explainers, slide decks, diagrams, and more |
+| [planning](./planning) | Generate concrete implementation plans — exact files, code, commands, and verification steps |
+| [executing](./executing) | Execute implementation plans with one fresh subagent per task and two-stage review |
+| [respond-in-html](./respond-in-html) | Respond in rich HTML instead of Markdown — the `.html` file is transport, the format is the point |
 
 ## Structure
 

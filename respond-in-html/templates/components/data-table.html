@@ -1,0 +1,58 @@
+<!--
+  Data table — striped rows, hover states, sticky header, mobile-responsive
+
+  USAGE: Wrap in overflow-x-auto. Use <thead> with sticky, <tbody> with even:bg-subtle
+  and hover:bg-subtle rows. On mobile (< sm), switch to a stacked label-value layout.
+
+  Optional sort indicator:
+    <span class="text-muted ml-1">&#9650;</span>  (ascending)
+    <span class="text-muted ml-1">&#9660;</span>  (descending)
+-->
+
+<div class="overflow-x-auto border border-border rounded-xl bg-surface">
+  <table class="w-full text-sm text-left">
+    <thead class="text-xs font-mono uppercase tracking-wider text-muted bg-subtle">
+      <tr>
+        <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Column A</th>
+        <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Column B</th>
+        <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Column C</th>
+        <th class="sticky top-0 px-5 py-3 font-semibold bg-subtle">Column D</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-border">
+      <tr class="even:bg-subtle/50 hover:bg-subtle transition-colors">
+        <td class="px-5 py-3 font-mono text-text">value</td>
+        <td class="px-5 py-3 text-text">value</td>
+        <td class="px-5 py-3">
+          <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-success/15 text-success">Active</span>
+        </td>
+        <td class="px-5 py-3 text-muted text-xs">note</td>
+      </tr>
+      <tr class="even:bg-subtle/50 hover:bg-subtle transition-colors">
+        <td class="px-5 py-3 font-mono text-text">value</td>
+        <td class="px-5 py-3 text-text">value</td>
+        <td class="px-5 py-3">
+          <span class="text-xs font-mono font-semibold px-2 py-0.5 rounded-lg bg-warn/20 text-warn">Pending</span>
+        </td>
+        <td class="px-5 py-3 text-muted text-xs">note</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Mobile: stacked card layout (override for sm: and below) -->
+<!--
+<div class="sm:hidden space-y-4">
+  <div class="bg-surface border border-border rounded-xl p-4">
+    <div class="text-xs font-mono text-muted uppercase tracking-wider">Column A</div>
+    <div class="text-text font-mono">value</div>
+    <div class="text-xs font-mono text-muted uppercase tracking-wider mt-2">Column B</div>
+    <div class="text-text">value</div>
+  </div>
+</div>
+<div class="hidden sm:block overflow-x-auto border border-border rounded-xl bg-surface">
+  <table class="w-full text-sm text-left">
+    ...
+  </table>
+</div>
+-->

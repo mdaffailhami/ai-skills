@@ -1,0 +1,62 @@
+<!--
+  Comparison card — side-by-side A vs B (or before/after, pro/con)
+
+  USAGE: Use a 2-column grid. Each side has a colored header, items with check/cross icons.
+  Labels: "Before" / "After", "Option A" / "Option B", "Pros" / "Cons", etc.
+-->
+
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Left side (success) -->
+  <div class="border border-success/25 rounded-xl bg-success/5 overflow-hidden">
+    <div class="px-5 py-3 bg-success/15 border-b border-success/25 flex items-center gap-2">
+      <i data-lucide="check-circle" class="w-4 h-4 text-success"></i>
+      <span class="text-sm font-semibold text-success uppercase tracking-wider">Option A</span>
+    </div>
+    <ul class="p-5 space-y-3 text-sm text-text">
+      <li class="flex items-start gap-2">
+        <i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i>
+        <span>Benefit or feature description.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i data-lucide="check" class="w-4 h-4 text-success shrink-0 mt-0.5"></i>
+        <span>Another positive point.</span>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Right side (danger) -->
+  <div class="border border-danger/25 rounded-xl bg-danger/5 overflow-hidden">
+    <div class="px-5 py-3 bg-danger/15 border-b border-danger/25 flex items-center gap-2">
+      <i data-lucide="x-circle" class="w-4 h-4 text-danger"></i>
+      <span class="text-sm font-semibold text-danger uppercase tracking-wider">Option B</span>
+    </div>
+    <ul class="p-5 space-y-3 text-sm text-text">
+      <li class="flex items-start gap-2">
+        <i data-lucide="x" class="w-4 h-4 text-danger shrink-0 mt-0.5"></i>
+        <span>Drawback or tradeoff description.</span>
+      </li>
+      <li class="flex items-start gap-2">
+        <i data-lucide="x" class="w-4 h-4 text-danger shrink-0 mt-0.5"></i>
+        <span>Another negative point.</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- Alternate: "Before vs After" (neutral + accent) -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+  <div class="border border-border rounded-xl bg-subtle/50 overflow-hidden">
+    <div class="px-5 py-3 bg-subtle border-b border-border flex items-center gap-2">
+      <i data-lucide="clock" class="w-4 h-4 text-muted"></i>
+      <span class="text-sm font-semibold text-muted uppercase tracking-wider">Before</span>
+    </div>
+    <div class="p-5 text-sm text-text">...</div>
+  </div>
+  <div class="border border-accent/25 rounded-xl bg-accent/5 overflow-hidden">
+    <div class="px-5 py-3 bg-accent/15 border-b border-accent/25 flex items-center gap-2">
+      <i data-lucide="sparkles" class="w-4 h-4 text-accent"></i>
+      <span class="text-sm font-semibold text-accent uppercase tracking-wider">After</span>
+    </div>
+    <div class="p-5 text-sm text-text">...</div>
+  </div>
+</div>
