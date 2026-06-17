@@ -22,7 +22,7 @@ All tools live inside a single cached virtual environment. Nothing needs to be i
 
 ## Workflow
 
-### Step 0: Set up cached environment (SKIP if already set up)
+### Step 0: Set up cached environment
 
 Creates the full environment in an OS-appropriate cache directory:
 
